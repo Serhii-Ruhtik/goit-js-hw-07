@@ -1,6 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-
+// console.log(galleryItems);
 const gallery = document.querySelector('.gallery');
 const imgGallery = CreateAndRenderMarkupGallery(galleryItems);
 
@@ -22,5 +22,36 @@ function CreateAndRenderMarkupGallery(galleryItems) {
         </div >
 `;
     })
-    .join('');
-}
+      .join('');
+};
+
+gallery.addEventListener('click', onImageClick);
+
+function onImageClick(event) {
+    
+    event.preventDefault();
+    if (event.target.nodeName !== 'IMG') {
+    return
+    };
+
+    const instance = basicLightbox.create(`
+    <img src = "${event.target.dataset.source}"> width = "800" height = "600"
+    `);
+    instance.show();
+    console.log(event);
+};
+
+
+// import * as basicLightbox from 'basiclightbox'
+
+// const instance = basicLightbox.create(
+//     <div class="modal">
+//         <p>
+//             Your first lightbox with just a few lines of code.
+//             Yes, it's really that simple.
+//         </p>
+//     </div>
+// )
+
+// instance.show()
+
